@@ -5,7 +5,7 @@ import json
 
 def capture_charge(transaction_id, body, api_key):
     url = (
-        "https://api-v2.sandbox.holacash.mx/v2/transaction/capture/"
+        "https://sandbox.api.holacash.mx/v2/transaction/capture/"
         f"{transaction_id}"
     )
     response = requests.post(
@@ -21,7 +21,7 @@ def capture_charge(transaction_id, body, api_key):
 
 def refund_charge(transaction_id, body, api_key):
     url = (
-        "https://api-v2.sandbox.holacash.mx/v2/transaction/refund/"
+        "https://sandbox.api.holacash.mx/v2/transaction/refund/"
         f"{transaction_id}"
     )
     response = requests.post(

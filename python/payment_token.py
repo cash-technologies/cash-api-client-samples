@@ -9,7 +9,7 @@ def create_payment_token(
     api_key: str,
     cash_antifraud_metadata: dict
 ) -> dict:
-    url = "https://api-v2.sandbox.holacash.mx/v2/tokenization/payment_token"
+    url = "https://sandbox.api.holacash.mx/v2/tokenization/payment_token"
     response = requests.post(
         url,
         headers={
@@ -32,7 +32,7 @@ def get_payment_token(
     api_key: str,
 ) -> dict:
     url = (
-        "https://api-v2.sandbox.holacash.mx/v2"
+        "https://sandbox.api.holacash.mx/v2"
         f"/tokenization/payment_token/{token_id}"
     )
     response = requests.get(
@@ -71,6 +71,10 @@ CREATE_TOKEN_REQUEST = {
     }
 }
 
+# Antifraud metadata
+# Check https://developers.holacash.mx/openapi/cashspa/#tag/tokenization for details on
+# possible values on X - Cash - Anti - Fraud - Metadata
+# NOTE: remember this data should be collected on the client
 ANTIFRAUD_METADATA = {
     "ip_address": '192.168.0.100',
     "device_id": 'somedevice_123456',

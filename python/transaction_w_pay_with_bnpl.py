@@ -6,7 +6,7 @@ import json
 
 # Creates a charge
 def create_charge(body, api_key, cash_antifraud_metadata):
-    url = "https://api-v2.sandbox.holacash.mx/v2/transaction/charge"
+    url = "https://sandbox.api.holacash.mx/v2/transaction/charge"
     response = requests.post(
         url,
         headers={
@@ -22,7 +22,10 @@ def create_charge(body, api_key, cash_antifraud_metadata):
     )
     return response.json()
 
-
+# Antifraud metadata
+# Check https://developers.holacash.mx/openapi/cashspa/#tag/tokenization for details on
+# possible values on X - Cash - Anti - Fraud - Metadata
+# NOTE: remember this data should be collected on the client
 ANTIFRAUD_METADATA = {
     "ip_address": '192.168.0.100',
     "device_id": 'somedevice_123456',

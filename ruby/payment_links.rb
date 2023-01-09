@@ -78,6 +78,7 @@ api_key = ENV['HOLACASH_API_KEY']
 # Antifraud metadata
 # Check https://developers.holacash.mx/openapi/cashspa/#tag/tokenization for details on
 # possible values on X-Cash-Anti-Fraud-Metadata
+# NOTE: remember this data should be collected on the client
 antifraud_metadata = { ip_address: '192.168.0.100', device_id: 'somedevice_123456', user_timezone: '-06:00' }
 
 CREATE_PAYMENT_LINK_REQUEST = {
