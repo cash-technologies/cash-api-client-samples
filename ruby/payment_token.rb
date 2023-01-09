@@ -7,7 +7,7 @@ require 'base64'
 
 # Creates a payment token to be used when issuing charges
 def create_payment_token(body, api_key, cash_antifraud_metadata)
-  uri = URI('https://api-v2.sandbox.holacash.mx/v2/tokenization/payment_token')
+  uri = URI('https://sandbox.api.holacash.mx/v2/tokenization/payment_token')
   request = Net::HTTP::Post.new(uri, 'Content-Type' => 'application/json')
   request['X-Api-Client-Key'] = api_key
   request['X-Cash-Anti-Fraud-Metadata'] = Base64.encode64(cash_antifraud_metadata.to_json).gsub("\n", '')
@@ -24,7 +24,7 @@ end
 
 # Gets an existing payment token
 def get_payment_token(token_id, api_key)
-  uri = URI("https://api-v2.sandbox.holacash.mx/v2/tokenization/payment_token/#{token_id}")
+  uri = URI("https://sandbox.api.holacash.mx/v2/tokenization/payment_token/#{token_id}")
   request = Net::HTTP::Get.new(uri, 'Content-Type' => 'application/json')
   request['X-Api-Client-Key'] = api_key
   http = Net::HTTP.new(uri.hostname, uri.port)
@@ -43,6 +43,7 @@ api_key = ENV['HOLACASH_API_KEY']
 # Antifraud metadata
 # Check https://developers.holacash.mx/openapi/cashspa/#tag/tokenization for details on
 # possible values on X-Cash-Anti-Fraud-Metadata
+# NOTE: remember this data should be collected on the client
 antifraud_metadata = { ip_address: '192.168.0.100', device_id: 'somedevice_123456', user_timezone: '-06:00' }
 
 # Create payment token input

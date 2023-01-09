@@ -7,7 +7,7 @@ require 'base64'
 require_relative 'transaction_w_credit_card'
 
 def capture_charge(transaction_id, body, api_key)
-  uri = URI("https://api-v2.sandbox.holacash.mx/v2/transaction/capture/#{transaction_id}")
+  uri = URI("https://sandbox.api.holacash.mx/v2/transaction/capture/#{transaction_id}")
   request = Net::HTTP::Post.new(uri, 'Content-Type' => 'application/json')
   request['X-Api-Client-Key'] = api_key
   request.body = body.to_json
@@ -22,7 +22,7 @@ def capture_charge(transaction_id, body, api_key)
 end
 
 def refund_charge(transaction_id, body, api_key)
-  uri = URI("https://api-v2.sandbox.holacash.mx/v2/transaction/refund/#{transaction_id}")
+  uri = URI("https://sandbox.api.holacash.mx/v2/transaction/refund/#{transaction_id}")
   request = Net::HTTP::Post.new(uri, 'Content-Type' => 'application/json')
   request['X-Api-Client-Key'] = api_key
   request.body = body.to_json
@@ -43,6 +43,7 @@ api_key = ENV['HOLACASH_API_KEY']
 # Antifraud metadata
 # Check https://developers.holacash.mx/openapi/cashspa/#tag/tokenization for details on
 # possible values on X-Cash-Anti-Fraud-Metadata
+# NOTE: remember this data should be collected on the client
 antifraud_metadata = { ip_address: '192.168.0.100', device_id: 'somedevice_123456', user_timezone: '-06:00' }
 
 create_charge_request = {

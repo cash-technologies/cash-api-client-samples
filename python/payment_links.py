@@ -12,7 +12,7 @@ CREATE_PAYMENT_LINK_REQUEST = {
         "minimum_amount": {"amount": 2000, "currency_code": "MXN"},
         "maximum_amount": {"amount": 20000, "currency_code": "MXN"},
     },
-    "description": "sai",
+    "description": "Testing to create a payment link",
     "max_num_times_can_be_paid": 1,
     "collect_customer_notes": False,
 }
@@ -85,7 +85,10 @@ def update_payment_link_detail(body, payment_link_id, api_key, cash_antifraud_me
     )
     return response.json()
 
-
+# Antifraud metadata
+# Check https://developers.holacash.mx/openapi/cashspa/#tag/tokenization for details on
+# possible values on X - Cash - Anti - Fraud - Metadata
+# NOTE: remember this data should be collected on the client
 ANTIFRAUD_METADATA = {
     "ip_address": "192.168.0.100",
     "device_id": "somedevice_123456",
